@@ -13,7 +13,7 @@ exports.genre_list = function(req, res, next) {
 };
 
 // Display detail page for a specific Genre.
-exports.genre_detail = function(req, res) {
+exports.genre_detail = function(req, res, next) {
   async.parallel({
     genre: function(callback) {
         Genre.findById(req.params.id)
