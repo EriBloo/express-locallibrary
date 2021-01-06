@@ -245,7 +245,7 @@ exports.book_delete_post = function (req, res, next) {
         });
         return;
       } else {
-        Book.findByIdAndRemove(req.body.bookid, function deleteBook(err) {
+        Book.findByIdAndDelete(req.body.bookid, function deleteBook(err) {
           if (err) {
             return next(err);
           }
