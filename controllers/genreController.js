@@ -163,6 +163,11 @@ exports.genre_update_get = function (req, res, next) {
     if (err) {
       return next(err);
     }
+    if (result === null) {
+      const err = new Error('Genre not found');
+      err.status = 404;
+      return next(err);
+    }
     res.render('genre_form', { title: 'Update Genre', genre: result });
   });
 };
@@ -170,7 +175,8 @@ exports.genre_update_get = function (req, res, next) {
 // Handle Genre update on POST.
 exports.genre_update_post = [
   body('name', 'Genre name required').trim().isLength({ min: 1 }).escape(),
-  function (req, res, next) {
+
+  (req, res, next) => {
     const errors = validationResult(req);
 
     const genre = new Genre({ name: req.body.name, _id: req.params.id });
