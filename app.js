@@ -7,8 +7,9 @@ var compression = require('compression');
 var helmet = require('helmet');
 
 var mongoose = require('mongoose');
-var mongoDB =
+var devMongoDB =
   'mongodb+srv://eriBloo:aZ9WVseO1cFfHF1I@locallibrarycluster.bmqel.mongodb.net/local_library?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || devMongoDB;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
