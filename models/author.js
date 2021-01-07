@@ -32,6 +32,14 @@ AuthorSchema.virtual('date_of_death_formatted').get(function () {
     : '';
 });
 
+AuthorSchema.virtual('date_of_birth_ISO').get(function () {
+  return this.date_of_birth ? this.date_of_birth.toISOString().split('T')[0] : '';
+});
+
+AuthorSchema.virtual('date_of_death_ISO').get(function () {
+  return this.date_of_death ? this.date_of_death.toISOString().split('T')[0] : '';
+});
+
 AuthorSchema.virtual('url').get(function () {
   return `/catalog/author/${this._id}`;
 });

@@ -179,7 +179,7 @@ exports.bookinstance_update_post = [
     .isISO8601()
     .toDate(),
 
-  (req, res, next) => {
+  (req, res, next) =>  {
     const errors = validationResult(req);
 
     const bookinstance = new BookInstance({
